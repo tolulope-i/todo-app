@@ -1,24 +1,34 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { ConvexProvider, ConvexReactClient } from 'convex/react';
+import { ThemeProvider } from '../context/ThemeContext';
+import { useFonts } from 'expo-font';
+import { SplashScreen } from 'expo-router';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+SplashScreen.preventAutoHideAsync();
 
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
+  unsavedChangesWarning: false,
+});
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const [fontsLoaded] = useFonts({
+    'JosefinSans-Regular': require('../assets/fonts/JosefinSans-Regular.ttf'),
+    'JosefinSans-Bold': require('../assets/fonts/JosefinSans-Bold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  SplashScreen.hideAsync();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <ConvexProvider client={convex}>
+      <ThemeProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+        </Stack>
+      </ThemeProvider>
+    </ConvexProvider>
   );
 }
