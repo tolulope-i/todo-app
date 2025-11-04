@@ -47,6 +47,7 @@
     },
     "extra": {
       "router": {},
+      "EXPO_PUBLIC_CONVEX_URL": "https://determined-possum-357.convex.cloud",
       "eas": {
         "projectId": "6ca0f2b7-01f6-4d7d-b646-f8b7da8da520"
       }
