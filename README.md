@@ -1,50 +1,42 @@
-# Welcome to your Expo app 👋
+# React Native Todo App with Expo and Convex Backend
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple and elegant Todo app built with React Native using Expo. The app features light/dark themes, filters, search, editing, and persistent backend powered by [Convex](https://convex.dev). Designed to work smoothly on both mobile and desktop platforms.
 
-## Get started
+---
 
-1. Install dependencies
+## Features
 
-   ```bash
-   npm install
-   ```
+- Add, edit, delete todos
+- Mark todos as completed or active
+- Filter todos by **All**, **Active**, or **Completed**
+- Search todos by text
+- Light and Dark theme toggle
+- Drag and drop reorder (hint text included)
+- Responsive UI for mobile and desktop
+- Persistent data with Convex backend
+- Keyboard support with "Enter" to add todo
+- Loading state while fetching data
+- Clear all completed todos button
 
-2. Start the app
+## Demo
+https://expo.dev/accounts/devtolu25/projects/todo-app/builds/015519a8-af8d-4e32-9373-70eef304d2da
 
-   ```bash
-   npx expo start
-   ```
+## Getting Started
 
-In the output, you'll find options to open the app in a
+### Prerequisites
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Node.js >= 16.x
+- Expo CLI (`npm install -g expo-cli`)
+- EAS CLI (`npm install -g eas-cli`)
+- Android Studio / Xcode for simulators (optional)
+- An Expo account (sign up at [expo.dev](https://expo.dev))
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+### Installation
 
-When you're ready, run:
+1. Clone the repository
 
 ```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+git clone [https://github.com/yourusername/todo-app.git](https://github.com/tolulope-i/todo-app)
+cd todo-app
