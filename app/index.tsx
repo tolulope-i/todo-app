@@ -22,13 +22,12 @@ import { TodoItem } from "../components/TodoItem";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { FilterTabs } from "../components/FilterTabs";
 import { SearchBar } from "../components/SearchBar";
-import { LinearGradient } from 'expo-linear-gradient';
-import { ImageBackground } from 'react-native';
-
+import { LinearGradient } from "expo-linear-gradient";
+import { ImageBackground } from "react-native";
 
 type Filter = "all" | "active" | "completed";
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 export default function TodoApp() {
   const { theme } = useTheme();
@@ -50,10 +49,17 @@ export default function TodoApp() {
   // Loading state
   if (todos === undefined) {
     return (
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+      <SafeAreaView
+        style={[styles.container, { backgroundColor: colors.background }]}
+      >
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={colors.primary} />
-          <Text style={[styles.loadingText, { color: colors.text, fontFamily: 'JosefinSans-Regular' }]}>
+          <Text
+            style={[
+              styles.loadingText,
+              { color: colors.text, fontFamily: "JosefinSans-Regular" },
+            ]}
+          >
             Loading todos...
           </Text>
         </View>
@@ -133,49 +139,57 @@ export default function TodoApp() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors.background }]}
+    >
       <KeyboardAvoidingView
         style={styles.keyboardAvoidingView}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         {/* Header Section with Background Image and Gradient Overlay */}
         <View style={styles.headerContainer}>
-  <ImageBackground
-    source={
-      theme === 'light'
-        ? require('../assets/images/bg-desktop-light.png')
-        : require('../assets/images/bg-desktop-dark.png')
-    }
-    style={styles.backgroundImage}
-    resizeMode="cover"
-  >
-    <LinearGradient
-      colors={['rgba(85,221,255,0.5)', 'rgba(192,88,243,0.5)']}
-      style={styles.gradient}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-    >
-      <View style={styles.headerContent}>
-        <Text style={styles.title}>T O D O</Text>
-        <ThemeToggle />
-      </View>
-    </LinearGradient>
-  </ImageBackground>
-</View>
-
+          <ImageBackground
+            source={
+              theme === "light"
+                ? require("../assets/images/bg-desktop-light.png")
+                : require("../assets/images/bg-desktop-dark.png")
+            }
+            style={styles.backgroundImage}
+            resizeMode="cover"
+          >
+            <LinearGradient
+              colors={["rgba(85,221,255,0.5)", "rgba(192,88,243,0.5)"]}
+              style={styles.gradient}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+            >
+              <View style={styles.headerContent}>
+                <Text style={styles.title}>T O D O</Text>
+                <ThemeToggle />
+              </View>
+            </LinearGradient>
+          </ImageBackground>
+        </View>
 
         {/* Main Content */}
         <View style={styles.mainContent}>
           {/* Add Todo Card */}
-          <View style={[styles.addCard, { backgroundColor: colors.cardBackground }]}>
+          <View
+            style={[styles.addCard, { backgroundColor: colors.cardBackground }]}
+          >
             <View style={styles.addTodoContainer}>
-              <View style={[styles.checkboxPlaceholder, { borderColor: colors.border }]} />
+              <View
+                style={[
+                  styles.checkboxPlaceholder,
+                  { borderColor: colors.border },
+                ]}
+              />
               <TextInput
                 style={[
                   styles.input,
                   {
                     color: colors.text,
-                    fontFamily: 'JosefinSans-Regular',
+                    fontFamily: "JosefinSans-Regular",
                   },
                 ]}
                 placeholder="Create a new todo..."
@@ -185,6 +199,22 @@ export default function TodoApp() {
                 onSubmitEditing={handleAddTodo}
                 returnKeyType="done"
               />
+              <TouchableOpacity
+                onPress={handleAddTodo}
+                style={styles.addButton}
+              >
+                <Text
+                  style={[
+                    {
+                      color: colors.primary,
+                      fontFamily: "JosefinSans-Bold",
+                      fontSize: 18,
+                    },
+                  ]}
+                >
+                  +
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
 
@@ -192,14 +222,35 @@ export default function TodoApp() {
           <SearchBar searchText={searchText} onSearchChange={setSearchText} />
 
           {/* Scrollable Todo List Card */}
-          <View style={[styles.todoCard, { backgroundColor: colors.cardBackground }]}>
+          <View
+            style={[
+              styles.todoCard,
+              { backgroundColor: colors.cardBackground },
+            ]}
+          >
             {filteredTodos.length === 0 ? (
               <View style={styles.emptyState}>
-                <Text style={[styles.emptyText, { color: colors.textSecondary, fontFamily: 'JosefinSans-Regular' }]}>
+                <Text
+                  style={[
+                    styles.emptyText,
+                    {
+                      color: colors.textSecondary,
+                      fontFamily: "JosefinSans-Regular",
+                    },
+                  ]}
+                >
                   {searchText ? "No todos match your search" : "No todos yet"}
                 </Text>
                 {!searchText && (
-                  <Text style={[styles.emptySubText, { color: colors.textSecondary, fontFamily: 'JosefinSans-Regular' }]}>
+                  <Text
+                    style={[
+                      styles.emptySubText,
+                      {
+                        color: colors.textSecondary,
+                        fontFamily: "JosefinSans-Regular",
+                      },
+                    ]}
+                  >
                     Add a todo to get started!
                   </Text>
                 )}
@@ -241,7 +292,12 @@ export default function TodoApp() {
 
           {/* Mobile Filter Tabs - shown only on smaller screens */}
           {width < 768 && (
-            <View style={[styles.filterCard, { backgroundColor: colors.cardBackground }]}>
+            <View
+              style={[
+                styles.filterCard,
+                { backgroundColor: colors.cardBackground },
+              ]}
+            >
               <FilterTabs
                 activeFilter={activeFilter}
                 onFilterChange={setActiveFilter}
@@ -253,7 +309,15 @@ export default function TodoApp() {
           )}
 
           {/* Hint Text */}
-          <Text style={[styles.hintText, { color: colors.textSecondary, fontFamily: 'JosefinSans-Regular' }]}>
+          <Text
+            style={[
+              styles.hintText,
+              {
+                color: colors.textSecondary,
+                fontFamily: "JosefinSans-Regular",
+              },
+            ]}
+          >
             Drag and drop to reorder list
           </Text>
         </View>
@@ -270,49 +334,49 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerContainer: {
-    width: '100%',
+    width: "100%",
     height: 200,
   },
   backgroundImage: {
     flex: 1,
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   gradient: {
     flex: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'flex-start',
+    width: "100%",
+    height: "100%",
+    justifyContent: "flex-start",
     paddingTop: 60,
   },
   headerContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 24,
     maxWidth: 540,
-    width: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    alignSelf: "center",
   },
   title: {
     fontSize: 32,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
+    fontWeight: "bold",
+    color: "#FFFFFF",
     letterSpacing: 10,
-    fontFamily: 'JosefinSans-Bold',
+    fontFamily: "JosefinSans-Bold",
   },
   mainContent: {
     flex: 1,
     paddingHorizontal: 24,
     maxWidth: 540,
-    width: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    alignSelf: "center",
     marginTop: -90,
   },
   addCard: {
     borderRadius: 4,
     marginBottom: 12,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
@@ -321,7 +385,7 @@ const styles = StyleSheet.create({
   todoCard: {
     borderRadius: 4,
     marginBottom: 16,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
@@ -333,15 +397,15 @@ const styles = StyleSheet.create({
   filterCard: {
     borderRadius: 4,
     marginBottom: 16,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
     elevation: 4,
   },
   addTodoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 16,
   },
   checkboxPlaceholder: {
@@ -364,32 +428,42 @@ const styles = StyleSheet.create({
   },
   emptyState: {
     padding: 40,
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   emptyText: {
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 8,
   },
   emptySubText: {
     fontSize: 14,
-    textAlign: 'center',
+    textAlign: "center",
   },
   hintText: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 12,
     marginTop: 8,
     marginBottom: 20,
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   loadingText: {
     marginTop: 16,
     fontSize: 16,
+  },
+  addButton: {
+    marginLeft: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#00aaff",
   },
 });
